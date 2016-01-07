@@ -30,14 +30,14 @@ public class GameTest extends TestCase {
         assertEquals(20, game.score());
     }
 
-//    @Test
-//    public void testASpare() {
-//        game.roll(9);
-//        game.roll(1);
-//        game.roll(3);
+    @Test
+    public void testASpare() {
+        game.roll(9);
+        game.roll(1);
+        game.roll(3);
 //        for (int i=0; i<17; i++)
 //            game.roll(0);
-//
-//        assertEquals(16, game.score());
-//    }
+
+        assertEquals(16, game.score());
+    }
 }

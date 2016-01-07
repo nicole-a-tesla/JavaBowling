@@ -19,10 +19,8 @@ public class Game {
     }
 
     public void roll(int numOfPins) {
-        score += numOfPins;
 
         int[] thisFrame = frames.get(currentFrame);
-        System.out.print(thisFrame[currentRoll]);
         thisFrame[currentRoll] = numOfPins;
 
         if (frameIsComplete()) {
@@ -40,9 +38,32 @@ public class Game {
         return frameScore == 10 || rolledTwice;
     }
 
+    private Boolean frameGetsBonus(int frameNumber) {
+        int[] rolls = frames.get(frameNumber);
+        return rolls[0] + rolls[1] == 10;
+    }
+
     public int score() {
+        for (int i=1; i<frames.size(); i++) {
+
+            int[] rolls = frames.get(i);
+            int rollSum = rolls[0] + rolls[1];
+            score += rollSum;
+
+            if (frameGetsBonus(i)) {
+                int nextFrame = i + 1;
+                int[] nextFramesRolls = frames.get(nextFrame);
+                score += nextFramesRolls[0];
+//
+//                if (frameIsStrike()) {
+//                    score += nextFramesRolls[1];
+//                }
+            }
+        }
+
         return score;
     }
+
 
 
     private void toggleCurrentRoll() {
