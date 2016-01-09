@@ -41,4 +41,14 @@ public class GameTest extends TestCase {
 
         assertEquals(16, game.score());
     }
+
+    @Test
+    public void testAStrike() {
+        game.roll(10);
+
+        for (int i=0; i<18; i++)
+            game.roll(1);
+
+        assertEquals(30, game.score());
+    }
 }

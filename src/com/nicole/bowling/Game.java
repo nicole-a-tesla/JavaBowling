@@ -17,15 +17,16 @@ public class Game {
     }
 
     public void roll(int numOfPins) {
-
         int[] thisFrame = frames.get(currentFrame);
         thisFrame[currentRoll] = numOfPins;
 
         if (frameIsComplete()) {
             currentFrame += 1;
+            currentRoll = 0;
+        } else {
+            toggleCurrentRoll();
         }
 
-        toggleCurrentRoll();
     }
 
     private Boolean frameIsComplete() {
