@@ -6,13 +6,11 @@ import java.util.HashMap;
  * Created by bears8yourface on 1/7/16.
  */
 public class Game {
-    private int score;
     private HashMap<Integer, int[]> frames;
     private int currentFrame;
     private int currentRoll;
 
     public Game() {
-        score = 0;
         currentFrame = 1;
         currentRoll = 0;
         frames = setupFrames();
@@ -44,6 +42,8 @@ public class Game {
     }
 
     public int score() {
+        int score = 0;
+
         for (int i=1; i<frames.size(); i++) {
 
             int[] rolls = frames.get(i);
