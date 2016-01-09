@@ -26,7 +26,7 @@ public class Game {
             currentFrame += 1;
             currentRoll = 0;
         } else {
-            toggleCurrentRoll();
+            currentRoll = 1;
         }
 
     }
@@ -70,15 +70,6 @@ public class Game {
     private int rollSum(int frameNumber) {
         int[] rolls = frames.get(frameNumber);
         return rolls[0] + rolls[1];
-    }
-
-
-    private void toggleCurrentRoll() {
-        if (currentRoll == 0) {
-            currentRoll = 1;
-        } else {
-            currentRoll = 0;
-        }
     }
 
     private HashMap setupFrames() {
