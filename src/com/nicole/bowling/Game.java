@@ -36,15 +36,10 @@ public class Game {
         return frameScore == 10 || rolledTwice;
     }
 
-    private Boolean frameGetsBonus(int frameNumber) {
-        int[] rolls = frames.get(frameNumber);
-        return rolls[0] + rolls[1] == 10;
-    }
-
     public int score() {
         int score = 0;
 
-        for (int i=1; i<frames.size(); i++) {
+        for (int i=1; i<frames.size() + 1; i++) {
 
             int[] rolls = frames.get(i);
             int rollSum = rolls[0] + rolls[1];
@@ -64,6 +59,11 @@ public class Game {
         return score;
     }
 
+
+    private Boolean frameGetsBonus(int frameNumber) {
+        int[] rolls = frames.get(frameNumber);
+        return rolls[0] + rolls[1] == 10;
+    }
 
 
     private void toggleCurrentRoll() {

@@ -35,8 +35,9 @@ public class GameTest extends TestCase {
         game.roll(9);
         game.roll(1);
         game.roll(3);
-//        for (int i=0; i<17; i++)
-//            game.roll(0);
+
+        for (int i=0; i<17; i++)
+            game.roll(0);
 
         assertEquals(16, game.score());
     }
