@@ -43,10 +43,7 @@ public class Game {
         int score = 0;
 
         for (int i=1; i<frames.size() + 1; i++) {
-
-            int[] rolls = frames.get(i);
-            int rollSum = rolls[0] + rolls[1];
-            score += rollSum;
+            score += rollSum(i);
 
             if (frameGetsBonus(i)) {
                 int nextFrame = i + 1;
@@ -63,14 +60,16 @@ public class Game {
     }
 
     private Boolean frameIsStrike(int frameNumber) {
-        int[] rolls = frames.get(frameNumber);
-        int rollSum = rolls[0] + rolls[1];
-        return currentRoll == 0 && rollSum == 10;
+        return currentRoll == 0 && rollSum(frameNumber) == 10;
     }
 
     private Boolean frameGetsBonus(int frameNumber) {
+        return rollSum(frameNumber) == 10;
+    }
+
+    private int rollSum(int frameNumber) {
         int[] rolls = frames.get(frameNumber);
-        return rolls[0] + rolls[1] == 10;
+        return rolls[0] + rolls[1];
     }
 
 
