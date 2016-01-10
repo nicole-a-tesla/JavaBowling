@@ -22,13 +22,16 @@ public class Game {
         int[] thisFrame = frames.get(currentFrame);
         thisFrame[currentRoll] = numOfPins;
 
+        incrementFrameAndRoll();
+    }
+
+    private void incrementFrameAndRoll() {
         if (frameIsComplete()) {
             currentFrame += 1;
             currentRoll = 0;
         } else {
             currentRoll = 1;
         }
-
     }
 
     private Boolean frameIsComplete() {
