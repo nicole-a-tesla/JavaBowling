@@ -11,6 +11,11 @@ import org.junit.Test;
 public class GameTest extends TestCase {
     private Game game;
 
+    private void rollManyTimes(int numToRoll, int timesToRoll) {
+        for (int i=0; i<timesToRoll; i++)
+            game.roll(numToRoll);
+    }
+
     @Before
     public void setUp() {
         game = new Game();
@@ -18,15 +23,13 @@ public class GameTest extends TestCase {
 
     @Test
     public void testGutterGame() {
-        for (int i=0; i<20; i++)
-            game.roll(0);
+        rollManyTimes(0, 20);
         assertEquals(0, game.score());
     }
 
     @Test
     public void testAllOnes() {
-        for (int i=0; i<20; i++)
-            game.roll(1);
+        rollManyTimes(1, 20);
         assertEquals(20, game.score());
     }
 
@@ -35,9 +38,7 @@ public class GameTest extends TestCase {
         game.roll(9);
         game.roll(1);
         game.roll(3);
-
-        for (int i=0; i<17; i++)
-            game.roll(0);
+        rollManyTimes(0, 17);
 
         assertEquals(16, game.score());
     }
@@ -45,9 +46,7 @@ public class GameTest extends TestCase {
     @Test
     public void testAStrike() {
         game.roll(10);
-
-        for (int i=0; i<18; i++)
-            game.roll(1);
+        rollManyTimes(1, 18);
 
         assertEquals(30, game.score());
     }

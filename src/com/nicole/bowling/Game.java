@@ -34,7 +34,7 @@ public class Game {
     private Boolean frameIsComplete() {
         int[] rolls = frames.get(currentFrame);
         int frameScore = rolls[0] + rolls[1];
-        Boolean rolledTwice = currentRoll == 1; // FIND BETTER SOLUTION
+        Boolean rolledTwice = currentRoll == 1;
 
         return frameScore == 10 || rolledTwice;
     }
@@ -54,8 +54,7 @@ public class Game {
         int bonus = 0;
 
         if (frameGetsBonus(frameNumber)) {
-            int nextFrame = frameNumber + 1;
-            int[] nextFramesRolls = frames.get(nextFrame);
+            int[] nextFramesRolls = frames.get(frameNumber + 1);
             bonus += nextFramesRolls[0];
 
             if (frameIsStrike(frameNumber)) {
