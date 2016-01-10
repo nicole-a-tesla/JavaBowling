@@ -1,7 +1,4 @@
 package com.nicole.bowling;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.HashMap;
 
 /**
@@ -47,28 +44,36 @@ public class Game {
 
         for (int i=1; i<frames.size() + 1; i++) {
             score += rollSum(i);
-
-            if (frameGetsBonus(i)) {
-                int nextFrame = i + 1;
-                int[] nextFramesRolls = frames.get(nextFrame);
-                score += nextFramesRolls[0];
-
-                if (frameIsStrike(i)) {
-                    score += nextFramesRolls[1];
-                }
-            }
+            score += calculateBonusIfApplicable(i);
         }
 
         return score;
+    }
+
+    private int calculateBonusIfApplicable(int frameNumber) {
+        int bonus = 0;
+
+        if (frameGetsBonus(frameNumber)) {
+            int nextFrame = frameNumber + 1;
+            int[] nextFramesRolls = frames.get(nextFrame);
+            bonus += nextFramesRolls[0];
+
+            if (frameIsStrike(frameNumber)) {
+                bonus += nextFramesRolls[1];
+            }
+        }
+
+        return bonus;
+    }
+
+    private Boolean frameGetsBonus(int frameNumber) {
+        return rollSum(frameNumber) == 10;
     }
 
     private Boolean frameIsStrike(int frameNumber) {
         return currentRoll == 0 && rollSum(frameNumber) == 10;
     }
 
-    private Boolean frameGetsBonus(int frameNumber) {
-        return rollSum(frameNumber) == 10;
-    }
 
     private int rollSum(int frameNumber) {
         int[] rolls = frames.get(frameNumber);
